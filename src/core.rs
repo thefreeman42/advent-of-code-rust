@@ -16,6 +16,9 @@ pub fn get_input(day: &u16) -> Vec<String> {
   let client = blocking::Client::new();
   let url = format!("https://adventofcode.com/2024/day/{}/input", day);
   let text = client.get(url).header(header::COOKIE, get_cookie_header()).send().unwrap().text().unwrap();
-  let lines = text.lines().map(|l| l.to_owned()).collect();
-  lines
+  get_lines(text)
+}
+
+pub fn get_lines(text: String) -> Vec<String> {
+  text.lines().map(|l| l.to_owned()).collect()
 }

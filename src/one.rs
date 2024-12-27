@@ -50,3 +50,35 @@ impl DailyChallenge for HistorianHysteria {
     similarity
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+  use crate::core::get_lines;
+
+  static TEST_TEXT: &str = "3   4
+4   3
+2   5
+1   3
+3   9
+3   3";
+
+  fn setup() -> HistorianHysteria {
+    let lines = get_lines(TEST_TEXT.to_string());
+    HistorianHysteria::new(lines)
+  }
+
+  #[test]
+  fn test_solve_part_one() {
+    let sut = setup();
+    let result = sut.solve_part_one();
+    assert_eq!(result, 11)
+  }
+
+  #[test]
+  fn test_solve_part_two() {
+    let sut = setup();
+    let result = sut.solve_part_two();
+    assert_eq!(result, 31)
+  }
+}
