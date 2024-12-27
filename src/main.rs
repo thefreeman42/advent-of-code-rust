@@ -21,13 +21,14 @@ fn main() {
   println!("Part 2: {:?}", challenge.solve_part_two());
 }
 
-fn get_challenge(day: u16) -> impl DailyChallenge {
+fn get_challenge(day: u16) -> Box<dyn DailyChallenge> {
   if day > 25 {
     panic!("Day cannot be over 25!");
   }
   let input = core::get_input(&day);
   match day {
-    1 => one::HistorianHysteria::new(input),
+    1 => Box::new(one::HistorianHysteria::new(input)),
+    2 => Box::new(two::RedNosedReports::new(input)),
     _ => panic!("Day {} not yet implemented!", day)
   }
 }
